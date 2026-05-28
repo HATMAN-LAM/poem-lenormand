@@ -24,14 +24,14 @@ const POSITIONS = ["【境】", "【变】", "【悟】"];
 const POS_DESC = ["当下的心境与处境", "核心变局与转折", "最终的启示与指引"];
 
 export default function PoemLenormand() {
-  const [drawnCards, setDrawnCards] = useState([]);
+  const [drawnCards, setDrawnCards] = useState<typeof POEMS>([]);
   const [flipped, setFlipped] = useState([false, false, false]);
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState<{role: string, content: string}[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false); // 新增状态：是否显示对话框
   
-  const chatEndRef = useRef(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   // 判断是否所有牌都已翻开
   const allFlipped = flipped.every(f => f) && drawnCards.length === 3;
@@ -50,7 +50,7 @@ export default function PoemLenormand() {
     setShowChatbot(false); // 洗牌时隐藏对话框
   };
 
-  const handleFlip = (index) => {
+  const handleFlip = (index: number) => {
     if (!drawnCards.length) return;
     const newFlipped = [...flipped];
     newFlipped[index] = true;
