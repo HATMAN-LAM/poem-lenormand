@@ -73,7 +73,7 @@ export async function POST(req: Request) {
 4. 回答要结构清晰，直接给出解读，不要说多余的废话。`;
 
     const response = await client.chat.completions.create({
-      model: "DeepSeek-V3.2-FW",
+      model: "DeepSeek-V3.2",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: question },
